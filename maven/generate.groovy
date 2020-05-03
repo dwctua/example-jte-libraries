@@ -1,3 +1,6 @@
 void call(){
-  println "maven: generateSource()"
+      stage("pre_build"){
+        println "maven: generateSource()"
+    }
+  
 }
