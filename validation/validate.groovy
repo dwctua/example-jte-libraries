@@ -1,4 +1,6 @@
 void call(){
-  println "validation: validate()"
+    stage("pre_build: validation"){
+        println "validation"
+    }
 }
 
