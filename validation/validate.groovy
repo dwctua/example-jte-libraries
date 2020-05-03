@@ -1,5 +1,5 @@
 void call(){
-    stage("pre_build: validation"){
+    stage("pre_build"){
         println "validation"
     }
 }
