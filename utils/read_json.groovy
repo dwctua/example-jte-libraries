@@ -1,14 +1,14 @@
 import groovy.json.JsonSlurper
 
 def call(String filename)  {
+
+  json = readFile(filename)
+  def jsonSlurper = new JsonSlurper()
+  data = new HashMap<>(jsonSlurper.parseText(json))
+  println(data['test'][0])
   sh """
     pwd
     ls -lart config
-    ls -lart /home/jenkins/workspace/test-shared-lib_master/config/host.json
+    env | grep 
   """
-  json = readFile(filename)
-  println(json)
-  def jsonSlurper = new JsonSlurper()
-  data = new HashMap<>(jsonSlurper.parseText(json))
-  println(data)
 }
