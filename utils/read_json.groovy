@@ -8,6 +8,6 @@ def call(String filename)  {
   """
   def jsonSlurper = new JsonSlurper()
   json = readFile(filename)
-  data = jsonSlurper().parseText(json)
+  data = jsonSlurper.parseText(json)
   println(data)
 }
