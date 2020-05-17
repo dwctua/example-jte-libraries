@@ -9,6 +9,6 @@ def call(String filename)  {
   sh """
     pwd
     ls -lart config
-    env | grep 
+    env | grep vhost
   """
 }
