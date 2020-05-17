@@ -1,5 +1,6 @@
 import groovy.json.JsonSlurperClassic
 
+@NonCPS
 def call(String filename)  {
   sh """
     pwd
