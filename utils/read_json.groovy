@@ -7,6 +7,7 @@ def call(String filename)  {
     ls -lart /home/jenkins/workspace/test-shared-lib_master/config/host.json
   """
   def jsonSlurper = new JsonSlurper()
-  data = jsonSlurper.parse(new File(filename))
+  json = readFile(filename)
+  data = jsonSlurper().parseText(json)
   println(data)
 }
