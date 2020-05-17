@@ -1,4 +1,4 @@
-import groovy.json.JsonSlurper
+import groovy.json.JsonSlurperClassic
 
 def call(String filename)  {
   sh """
@@ -6,7 +6,7 @@ def call(String filename)  {
     ls -lart config
     ls -lart /home/jenkins/workspace/test-shared-lib_master/config/host.json
   """
-  def jsonSlurper = new JsonSlurper()
+  def jsonSlurper = new JsonSlurperClassic()
   json = readFile(filename)
   println(json)
   data = jsonSlurper.parseText(json)
