@@ -1,5 +1,5 @@
-import utils
+import utils.FileUtils
 void call(){
   println "maven: unit_test()"
-  read_json("config/host.json")
+  FileUtils.read_json("config/host.json")
 }
