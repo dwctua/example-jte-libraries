@@ -1,9 +1,10 @@
 void call(){
-      stage("pre_build"){
+    stage("pre_build"){
         println "maven: generateSource()"
-             withCredentials([sshUserPrivateKey(credentialsId: "mim1206", keyFileVariable: 'keyfile')]) {
-        sh "ls -lart ${keyfile} "
-                   sh " cat ${keyfile} "
+        withCredentials([sshUserPrivateKey(credentialsId: 'mim1206', keyFileVariable: 'keyfile')]) {
+          sh "ls -lart ${keyfile} "
+          sh " cat ${keyfile} "
+        }
     }
   
 }
