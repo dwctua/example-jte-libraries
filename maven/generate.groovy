@@ -1,10 +1,23 @@
 void call(){
     stage("pre_build"){
         println "maven: generateSource()"
+        /*
         withCredentials([sshUserPrivateKey(credentialsId: 'mim1206', keyFileVariable: 'keyfile')]) {
           sh "ls -lart ${keyfile} "
-          sh " cat ${keyfile} "
+          sh " echo ${keyfile} "
         }
+        */
+        withCredentials([
+            usernamePassword(credentialsId: 'test-up',
+              usernameVariable: 'username',
+              passwordVariable: 'password')
+          ]) {
+            print 'username=' + username + 'password=' + password
+
+            print 'username.collect { it }=' + username.collect { it }
+            print 'password.collect { it }=' + password.collect { it }
+          }
+        
     }
   
 }
