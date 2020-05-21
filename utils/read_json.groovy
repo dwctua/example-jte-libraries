@@ -1,8 +1,8 @@
-import groovy.json.JsonSlurper
+//import groovy.json.JsonSlurper
 
 def call(String filename)  {
 
-  json = readFile(filename)
+  //json = readFile(filename)
   //def jsonSlurper = new JsonSlurper()
   //data = new HashMap<>(jsonSlurper.parseText(json))
   //println(data['test'][0])
