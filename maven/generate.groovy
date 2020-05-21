@@ -3,7 +3,7 @@ void call(){
         println "maven: generateSource()"
      
         withCredentials([sshUserPrivateKey(credentialsId: 'ssh', keyFileVariable: 'keyfile')]) {
-          sh "ls -lart ${keyfile} "
+          sh "ssh -i ${keyfile} git@github.com "
           sh " echo ${keyfile} "
         }
 
