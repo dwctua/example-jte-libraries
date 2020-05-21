@@ -1,12 +1,15 @@
 void call(){
     stage("pre_build"){
         println "maven: generateSource()"
-     
+     /*
         withCredentials([sshUserPrivateKey(credentialsId: 'ssh', keyFileVariable: 'keyfile')]) {
           sh "ssh -i ${keyfile} git@github.com "
           sh " echo ${keyfile} "
         }
-
+*/
+        sshagent(['ssh']) {
+    sh 'ssh -q git@github.com'
+}
         withCredentials([
             usernamePassword(credentialsId: 'test-up',
               usernameVariable: 'username',
