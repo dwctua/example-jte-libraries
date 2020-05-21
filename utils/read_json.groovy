@@ -1,6 +1,6 @@
 //import groovy.json.JsonSlurper
 
-def call(String filename)  {
+void call(String filename)  {
 
   //json = readFile(filename)
   //def jsonSlurper = new JsonSlurper()
