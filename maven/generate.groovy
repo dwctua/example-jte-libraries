@@ -1,6 +1,7 @@
 void call() {
     stage('pre_build') {
         println 'maven: generateSource()'
+        parseXML()
     }
 }
 
@@ -24,6 +25,12 @@ private void sshTest() {
             print 'password.collect { it }=' + password.collect { it }
         }
     }
+}
+
+private void parseXML() {
+    String base = 'example-jte-app-maven/apiproxy/proxies/*.xml'
+    def files =  findFiles(glob: base)
+    println files
 }
 
 /*
