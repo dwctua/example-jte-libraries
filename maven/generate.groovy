@@ -28,7 +28,7 @@ private void sshTest() {
 }
 
 private void parseXML() {
-    String base = 'example-jte-app-maven/apiproxy/proxies/*.xml'
+    String base = 'apiproxy/proxies/*.xml'
     def files =  findFiles(glob: base)
     for (def file in files) {
         println file
