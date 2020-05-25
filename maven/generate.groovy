@@ -30,7 +30,15 @@ private void sshTest() {
 private void parseXML() {
     String base = 'example-jte-app-maven/apiproxy/proxies/*.xml'
     def files =  findFiles(glob: base)
-    println files
+    for (def file in files) {
+        println file
+        def proxyEndpoint = new XmlParser().parse(file)
+        Map m = [:]
+        m.name = proxyEndpoint.@name.text()
+        m.basePath = proxyEndpoint.HTTPProxyConnection.BasePath.text()
+        m.host = proxyEndpoint.HTTPProxyConnection.VirtualHost.text()
+        println m
+    }
 }
 
 /*
