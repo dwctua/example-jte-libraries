@@ -1,3 +1,4 @@
+import groovy.util.XmlParser
 void call() {
     stage('pre_build') {
         println 'maven: generateSource()'
