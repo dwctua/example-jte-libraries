@@ -44,14 +44,13 @@ private void parseXML() {
         def xmlfile = readFile filename.path
         Map m = [:]
         m.name =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.@name.text() }
-        // m.name = proxyEndpoint.@name.text()
-        // m.basePath = proxyEndpoint.HTTPProxyConnection.BasePath.text()
-        // m.host = proxyEndpoint.HTTPProxyConnection.VirtualHost.text()
+        m.name =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.BasePath.text() }
+        m.name =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.VirtualHost.text() }
         println m
     }
 }
 
-
+@NonCPS
 String extractFromXml(String xml, Closure closure) {
     def node = new XmlSlurper().parseText(xml)
     return closure.call(node)?.text()
