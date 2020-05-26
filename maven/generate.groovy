@@ -55,7 +55,7 @@ private void parseXML() {
         // m.url =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.VirtualHost.text() }
        list.add(m)
     }
-    println m
+    println list
 }
 
 @NonCPS
