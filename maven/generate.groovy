@@ -41,7 +41,7 @@ private void parseXML() {
 
     List list = []
     for (def file in files) {
-        println filename
+        println file
         def xml = readFile file.path
         def proxyEndpoint = new XmlSlurper().parseText(xml)
         Map m = [:]
