@@ -38,6 +38,7 @@ private void parseXML() {
             ${files[0].lastModified}
     """
 
+    List list = []
     for (def filename in files) {
         println filename
         def xml = readFile filename.path
@@ -52,8 +53,9 @@ private void parseXML() {
         // String base =  extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.BasePath.text() }
         // m.basePath = (base) ? base : "/"
         // m.url =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.VirtualHost.text() }
-        println m
+       list.add(m)
     }
+    println m
 }
 
 @NonCPS
