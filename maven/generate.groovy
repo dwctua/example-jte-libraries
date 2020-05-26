@@ -61,7 +61,7 @@ private void parseXML() {
 
 private void parseJSON() {
     String filePath = 'config/host.json'
-    def json = readJson file: filePath
+    def json = readJSON file: filePath
     print json
 }
 
