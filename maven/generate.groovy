@@ -31,6 +31,8 @@ private void sshTest() {
 private void parseXML() {
     String base = 'apiproxy/proxies/*.xml'
     def files =  findFiles(glob: base)
+    """${files[0].name} ${files[0].path} ${files[0].directory} ${files[0].length} ${files[0].lastModified}"""
+
     for (def filename in files) {
         println filename
         def proxyEndpoint =  new XmlSlurper().parse(new File(filename))
