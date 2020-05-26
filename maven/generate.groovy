@@ -51,7 +51,7 @@ private void parseXML() {
     }
 }
 
-@NonCPS
+
 String extractFromXml(String xml, Closure closure) {
     def node = new XmlSlurper().parseText(xml)
     return closure.call(node)?.text()
