@@ -24,29 +24,34 @@ private void sshTest() {
 
             print 'username.collect { it }=' + username.collect { it }
             print 'password.collect { it }=' + password.collect { it }
-        }
+          }
     }
 }
-
 
 private void parseXML() {
     String baseDir = 'apiproxy/proxies/*.xml'
     def files =  findFiles(glob: baseDir)
-    echo """${files[0].name} 
-            ${files[0].path} 
-            ${files[0].directory} 
-            ${files[0].length} 
+    echo """${files[0].name}
+            ${files[0].path}
+            ${files[0].directory}
+            ${files[0].length}
             ${files[0].lastModified}
     """
 
     for (def filename in files) {
         println filename
         def xmlfile = readFile filename.path
+        def proxyEndpoint = new XmlSlurper().parseText(xml)
         Map m = [:]
-        m.name =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.@name.text() }
-        String base =  extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.BasePath.text() }
+        m.name = proxyEndpoint.@name.text()
+        String base =   proxyEndpoint.HTTPProxyConnection.BasePath.text()
         m.basePath = (base) ? base : "/"
-        m.url =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.VirtualHost.text() }
+        url =  proxyEndpoint.HTTPProxyConnection.VirtualHost.text()
+
+        // m.name =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.@name.text() }
+        // String base =  extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.BasePath.text() }
+        // m.basePath = (base) ? base : "/"
+        // m.url =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.VirtualHost.text() }
         println m
     }
 }
