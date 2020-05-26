@@ -31,11 +31,17 @@ private void sshTest() {
 private void parseXML() {
     String base = 'apiproxy/proxies/*.xml'
     def files =  findFiles(glob: base)
-    echo """${files[0].name} ${files[0].path} ${files[0].directory} ${files[0].length} ${files[0].lastModified}"""
+    echo """${files[0].name} 
+            ${files[0].path} 
+            ${files[0].directory} 
+            ${files[0].length} 
+            ${files[0].lastModified}
+    """
 
     for (def filename in files) {
         println filename
-        def proxyEndpoint =  new XmlSlurper().parse(new File(filename))
+        def workspace = pwd()
+        def proxyEndpoint =  new XmlSlurper().parse(new File("${filename.path}"))
         Map m = [:]
         m.name = proxyEndpoint.@name.text()
         m.basePath = proxyEndpoint.HTTPProxyConnection.BasePath.text()
