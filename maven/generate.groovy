@@ -41,7 +41,7 @@ private void parseXML() {
 
     for (def filename in files) {
         println filename
-        def xmlfile = readFile filename
+        def xmlfile = readFile filename.path
         Map m = [:]
         m.name =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.@name.text() }
         // m.name = proxyEndpoint.@name.text()
