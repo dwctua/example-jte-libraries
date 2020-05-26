@@ -3,6 +3,7 @@ void call() {
     stage('pre_build') {
         println 'maven: generateSource()'
         parseXML()
+        parseJSON()
     }
 }
 
@@ -39,9 +40,9 @@ private void parseXML() {
     """
 
     List list = []
-    for (def filename in files) {
+    for (def file in files) {
         println filename
-        def xml = readFile filename.path
+        def xml = readFile file.path
         def proxyEndpoint = new XmlSlurper().parseText(xml)
         Map m = [:]
         m.name = proxyEndpoint.@name.text()
@@ -56,6 +57,12 @@ private void parseXML() {
        list.add(m)
     }
     println list
+}
+
+private void parseJSON() {
+    String filePath = 'config/host.json'
+    def json = readJson file: filePath
+    print json
 }
 
 @NonCPS
