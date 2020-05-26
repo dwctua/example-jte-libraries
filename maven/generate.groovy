@@ -65,11 +65,11 @@ private void parseJSON() {
     print json
 }
 
-@NonCPS
-String extractFromXml(String xml, Closure closure) {
-    def node = new XmlSlurper().parseText(xml)
-    return closure.call(node)?.text()
-}
+// @NonCPS
+// String extractFromXml(String xml, Closure closure) {
+//     def node = new XmlSlurper().parseText(xml)
+//     return closure.call(node)?.text()
+// }
 
 /*
 @BeforeStep
