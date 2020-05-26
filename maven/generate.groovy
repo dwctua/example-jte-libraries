@@ -45,7 +45,7 @@ private void parseXML() {
         sh """
             ls -lart $workspace/${filename.path}
         """
-        def proxyEndpoint =  new XmlSlurper().parse(new File("$workspace/${filename.path}"))
+        def proxyEndpoint =  new XmlSlurper().parse(readFile("$workspace/${filename.path}"))
         Map m = [:]
         m.name = proxyEndpoint.@name.text()
         m.basePath = proxyEndpoint.HTTPProxyConnection.BasePath.text()
