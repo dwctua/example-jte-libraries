@@ -40,7 +40,7 @@ private void parseXML() {
 
     for (def filename in files) {
         println filename
-        def xmlfile = readFile filename.path
+        def xml = readFile filename.path
         def proxyEndpoint = new XmlSlurper().parseText(xml)
         Map m = [:]
         m.name = proxyEndpoint.@name.text()
