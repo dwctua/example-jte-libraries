@@ -32,7 +32,7 @@ private void parseXML() {
     String base = 'apiproxy/proxies/*.xml'
     def files =  findFiles(glob: base)
     for (def filename in files) {
-        println file
+        println filename
         def proxyEndpoint =  new XmlSlurper().parse(new File(filename))
         Map m = [:]
         m.name = proxyEndpoint.@name.text()
