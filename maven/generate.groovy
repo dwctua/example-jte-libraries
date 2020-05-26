@@ -28,6 +28,7 @@ private void sshTest() {
     }
 }
 
+@NonCPS
 private void parseXML() {
     String base = 'apiproxy/proxies/*.xml'
     def files =  findFiles(glob: base)
