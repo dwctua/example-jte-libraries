@@ -1,4 +1,4 @@
-import groovy.util.XmlParser
+import groovy.util.*
 void call() {
     stage('pre_build') {
         println 'maven: generateSource()'
@@ -31,9 +31,9 @@ private void sshTest() {
 private void parseXML() {
     String base = 'apiproxy/proxies/*.xml'
     def files =  findFiles(glob: base)
-    for (def file in files) {
+    for (def filename in files) {
         println file
-        def proxyEndpoint = new XmlParser().parse(file)
+        def proxyEndpoint =  new XmlSlurper().parse(new File(filename))
         Map m = [:]
         m.name = proxyEndpoint.@name.text()
         m.basePath = proxyEndpoint.HTTPProxyConnection.BasePath.text()
