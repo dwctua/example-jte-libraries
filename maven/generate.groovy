@@ -30,8 +30,8 @@ private void sshTest() {
 
 
 private void parseXML() {
-    String base = 'apiproxy/proxies/*.xml'
-    def files =  findFiles(glob: base)
+    String baseDir = 'apiproxy/proxies/*.xml'
+    def files =  findFiles(glob: baseDir)
     echo """${files[0].name} 
             ${files[0].path} 
             ${files[0].directory} 
