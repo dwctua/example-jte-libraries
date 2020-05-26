@@ -41,18 +41,20 @@ private void parseXML() {
 
     for (def filename in files) {
         println filename
-        def workspace = pwd()
-
-        sh """
-            ls -lart $workspace/${filename.path}
-        """
-        def proxyEndpoint =  new XmlSlurper().parse("$workspace/${filename.path}")
+        def xmlfile = readFile filename
         Map m = [:]
-        m.name = proxyEndpoint.@name.text()
-        m.basePath = proxyEndpoint.HTTPProxyConnection.BasePath.text()
-        m.host = proxyEndpoint.HTTPProxyConnection.VirtualHost.text()
+        m.name =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.@name.text() }
+        // m.name = proxyEndpoint.@name.text()
+        // m.basePath = proxyEndpoint.HTTPProxyConnection.BasePath.text()
+        // m.host = proxyEndpoint.HTTPProxyConnection.VirtualHost.text()
         println m
     }
+}
+
+@NonCPS
+String extractFromXml(String xml, Closure closure) {
+    def node = new XmlSlurper().parseText(xml)
+    return closure.call(node)?.text()
 }
 
 /*
