@@ -44,7 +44,8 @@ private void parseXML() {
         def xmlfile = readFile filename.path
         Map m = [:]
         m.name =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.@name.text() }
-        m.basePath =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.BasePath.text() }
+        String base =  extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.BasePath.text() }
+        m.basePath = (base) ? base : "/"
         m.url =   extractFromXml(xmlfile) { proxyEndpoint -> proxyEndpoint.HTTPProxyConnection.VirtualHost.text() }
         println m
     }
