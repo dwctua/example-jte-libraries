@@ -28,7 +28,7 @@ private void sshTest() {
     }
 }
 
-@NonCPS
+
 private void parseXML() {
     String base = 'apiproxy/proxies/*.xml'
     def files =  findFiles(glob: base)
@@ -46,7 +46,7 @@ private void parseXML() {
         sh """
             ls -lart $workspace/${filename.path}
         """
-        def proxyEndpoint =  new XmlSlurper().parse(readFile("$workspace/${filename.path}"))
+        def proxyEndpoint =  new XmlSlurper().parse("$workspace/${filename.path}")
         Map m = [:]
         m.name = proxyEndpoint.@name.text()
         m.basePath = proxyEndpoint.HTTPProxyConnection.BasePath.text()
